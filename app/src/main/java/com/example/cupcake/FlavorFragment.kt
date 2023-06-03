@@ -44,9 +44,6 @@ class FlavorFragment : Fragment() {
         val fragmentBinding = FragmentFlavorBinding.inflate(inflater, container, false)
         binding = fragmentBinding
 
-        binding?.apply {
-            viewModel = sharedViewModel
-        }
         return fragmentBinding.root
     }
 
@@ -54,6 +51,7 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            viewModel = sharedViewModel
             nextButton.setOnClickListener { goToNextScreen() }
         }
     }
