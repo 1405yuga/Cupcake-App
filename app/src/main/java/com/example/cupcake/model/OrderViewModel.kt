@@ -8,6 +8,7 @@ import java.util.Calendar
 import java.util.Locale
 
 private const val PRICE_PER_CAKE = 2.0
+private const val PRICE_FOR_SAME_DAY_PICKUP = 3.0
 
 class OrderViewModel : ViewModel() {
 
@@ -33,6 +34,7 @@ class OrderViewModel : ViewModel() {
     }
     fun setDate(pickUpDate : String){
         _date.value = pickUpDate
+        updatePrice()
     }
 
     fun hasNoFlavorSet() : Boolean{
@@ -60,7 +62,12 @@ class OrderViewModel : ViewModel() {
         resetOrder()
     }
     private fun updatePrice(){
-        _price.value = (quantity.value ?: 0)*PRICE_PER_CAKE
+        var calculatedPrice= (quantity.value ?: 0)*PRICE_PER_CAKE
+        if(_date.value.equals(dateOptions[0])){
+            calculatedPrice+= PRICE_FOR_SAME_DAY_PICKUP
+        }
+        _price.value = calculatedPrice
+
     }
 
 }
