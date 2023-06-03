@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+private const val PRICE_PER_CAKE = 2.0
+
 class OrderViewModel : ViewModel() {
 
     private val _quantity = MutableLiveData<Int>()
@@ -23,6 +25,7 @@ class OrderViewModel : ViewModel() {
 
     fun setQuantity(noOfCupcakes : Int){
         _quantity.value = noOfCupcakes
+        updatePrice()
     }
 
     fun setFlavor(flavorDeatils : String){
@@ -55,6 +58,9 @@ class OrderViewModel : ViewModel() {
     }
     init {
         resetOrder()
+    }
+    private fun updatePrice(){
+        _price.value = (quantity.value ?: 0)*PRICE_PER_CAKE
     }
 
 }
