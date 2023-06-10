@@ -114,7 +114,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/next_button"
                 android:layout_marginEnd="@dimen/side_margin"
-                style="?attr/materialButtonOutlinedStyle"/>
+                style="?attr/materialButtonOutlinedStyle"
+                android:onClick="@{() -> fragmentFlavor.cancelOrder()}"/>
 
             <Button
                 android:id="@+id/next_button"
